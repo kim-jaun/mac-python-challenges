@@ -24,7 +24,18 @@ def add_to_dict(arg, arg2, arg3 = ""):
     print(f"You need to send a dictionary. You sent: {type(arg)}")
   pass
 
-def get_from_dict():
+def get_from_dict(get_arg, get_arg2=""):
+  if type(get_arg) == dict:
+    if get_arg2 != "":
+      if get_arg2 in get_arg:
+        get_arg[get_arg2] = get_arg
+        print(f"{get_arg2}: The source of life.")
+      else:
+        print(f"{get_arg2} was not found in this dict.")
+    else:
+      print("You need to send a word to search for.")
+  else:
+    print(f"You need to send a dictionary. You sent: {type(get_arg)}")
   pass
 
 def update_word():
