@@ -5,31 +5,34 @@ import sys
 print("Welcome to IsItDown.py!")
 print("Please write a URL or URLs you want to check. (separated by comma)")
 
-try:
-  urls = input()
-  urls = urls.split(',')
+ur = input()
+urls = ur.lower()
+urls = urls.split(',')
 
-  for url in urls:
-    url = url.strip()
-    if "http://" in url:
-      reurl = requests.get(url)
-      if reurl.status_code == requests.codes.ok:
-        print(f"{url} is up!")
-      else :
-        print(f"{url} is down!")
-    else:
-      url = "http://" + url
-      reurl = requests.get(url)
-      if reurl.status_code == requests.codes.ok:
-        print(f"{url} is up!")
-      else :
-        print(f"{url} is down!")
 
-except:
-  print(f"{url} is not a valid URL")
+def req_url():
+  try:
+    reurl = requests.get(url)
+    if reurl.status_code == requests.codes.ok:
+      print(f"{url} is up!")
+  except:
+    print(f"{url} is down!")
+
+
+for url in urls:
+  url = url.strip()
+  if "http://" in url and "." in url:
+    req_url()
+  elif "." in url:
+    url = "http://" + url
+    req_url()
+  else:
+    print(f"{url} is not a valid URL")
+
 
 def restart_over():
-  start_over = input("Do you want to start over? y/n ")
+  sta_over = input("Do you want to start over? y/n ")
+  start_over = sta_over.lower()
   if start_over == "y":
     os.system('clear')
     os.execl(sys.executable, sys.executable, *sys.argv)
@@ -42,4 +45,3 @@ def restart_over():
 
 
 restart_over()
-  
