@@ -10,26 +10,25 @@ All this functions should check for errors, follow the comments to see all cases
 There should be NO ERRORS from Python in the console.
 """
 
-def add_to_dict(arg, arg2, arg3 = ""):
-  if type(arg) == dict:
-    if arg3 != "":
-      if arg2 in arg:
-        print(f"{arg2} is already on the dictionary. Won't add.")
+def add_to_dict(add_arg, add_arg2, add_arg3 = ""):
+  if type(add_arg) == dict:
+    if add_arg3 != "":
+      if add_arg2 in add_arg:
+        print(f"{add_arg2} is already on the dictionary. Won't add.")
       else:
-        arg[arg2] = arg3
-        print(f"{arg2} had been added.")
+        add_arg[add_arg2] = add_arg3
+        print(f"{add_arg2} had been added.")
     else:
       print("You need to send a word an d a definition.")
   else:
-    print(f"You need to send a dictionary. You sent: {type(arg)}")
+    print(f"You need to send a dictionary. You sent: {type(add_arg)}")
   pass
 
 def get_from_dict(get_arg, get_arg2=""):
   if type(get_arg) == dict:
     if get_arg2 != "":
       if get_arg2 in get_arg:
-        get_arg[get_arg2] = get_arg
-        print(f"{get_arg2}: The source of life.")
+        print(f"{get_arg2}: {get_arg[get_arg2]}")
       else:
         print(f"{get_arg2} was not found in this dict.")
     else:
@@ -38,10 +37,32 @@ def get_from_dict(get_arg, get_arg2=""):
     print(f"You need to send a dictionary. You sent: {type(get_arg)}")
   pass
 
-def update_word():
+def update_word(word_arg, word_arg2, word_arg3 = ""):
+  if type(word_arg) == dict:
+    if word_arg3 != "":
+      if word_arg2 in word_arg:
+        print(f"{word_arg2} has been updated to: {word_arg3}")
+        word_arg[word_arg2] = word_arg3
+      else:
+        print(f"{word_arg2} is not on the dict. Can't update non-existing word.")
+    else:
+      print("You need to send a word and a definition to update.")
+  else:
+    print(f"You need to send a dictionary. Ypu sent: {type(word_arg)}")
   pass
 
-def delete_from_dict():
+def delete_from_dict(del_arg, del_arg2 = ""):
+  if type(del_arg) == dict:
+    if del_arg2 != "":
+      if del_arg2 in del_arg:
+        print(f"{del_arg2} has been deleted.")
+        del del_arg[del_arg2]
+      else:
+        print(f"{del_arg2} is not in this dict. Won't delete.")
+    else:
+      print("You need to specify a word to delete.")
+  else:
+    print(f"You need to send a dictionary. You sent: {type(del_arg)}")
   pass
 
 # \/\/\/\/\/\/\ DO NOT TOUCH  \/\/\/\/\/\/\
