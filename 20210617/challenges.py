@@ -1,53 +1,45 @@
-import os
 import requests
-from bs4 import BeautifulSoup
+import os
+import sys
 
-def finding(biglist):
-  country = input("#: ")
-  if country.isdecimal():
-      number = int(country)
-      if number <= len(biglist):
-        print("You chose", biglist[number][1])
-        print("The currency code is", biglist[number][3].upper())
-      else:
-        print("Choose a number from the list.")
-        return finding()
+print("Welcome to IsItDown.py!")
+print("Please write a URL or URLs you want to check. (separated by comma)")
+
+try:
+  urls = input()
+  urls = urls.split(',')
+
+  for url in urls:
+    url = url.strip()
+    if "http://" in url:
+      reurl = requests.get(url)
+      if reurl.status_code == requests.codes.ok:
+        print(f"{url} is up!")
+      else :
+        print(f"{url} is down!")
+    else:
+      url = "http://" + url
+      reurl = requests.get(url)
+      if reurl.status_code == requests.codes.ok:
+        print(f"{url} is up!")
+      else :
+        print(f"{url} is down!")
+
+except:
+  print(f"{url} is not a valid URL")
+
+def restart_over():
+  start_over = input("Do you want to start over? y/n ")
+  if start_over == "y":
+    os.system('clear')
+    os.execl(sys.executable, sys.executable, *sys.argv)
+  elif start_over == "n":
+    sys.exit
   else:
-    print("That wasn\'t a number.")
-    return finding
+    print("That's not a vaild answer")
+    restart_over()
 
 
-def findurlcode():
-  indeed_result = requests.get('https://www.iban.com/currency-codes')
-  indeed_soup = BeautifulSoup(indeed_result.text, "html.parser")
-  datalist = indeed_soup.find("table", {"class": "table table-bordered downloads tablesorter"})
-  pages = datalist.find_all('tr')
-  biglist = []
-  count = 0
-  for i in pages[1:]:
-    minilist = []
-    minilist.append(count)
-    for k in i:
-      if k != "\n":
-        data = str(k,string)
-        if data.indecimal():
-          minilist.append(int(data))
-        else:
-          minilist.append(data[0] + data[1:].lower())
-    if type(minilist[4]) == type(0):
-      biglist.append(minilist)
-      count += 1
-  return biglist
 
-
-def firstwork():
-  boglist = findurlcode()
-  for i in biglist:
-    print("#", i[0], i[1])
-  return biglist
-
-
-def startgame():
-  print("Hello! Please choose select a country by number:")
-  biglist = firstwork()
-  finding(biglist)
+restart_over()
+  
