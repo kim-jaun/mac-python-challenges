@@ -6,8 +6,8 @@ print("Welcome to IsItDown.py!")
 print("Please write a URL or URLs you want to check. (separated by comma)")
 
 ur = input()
-urls = ur.lower()
-urls = urls.split(',')
+u = ur.lower()
+urls = u.split(',')
 
 
 def req_url():
