@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+    Nomad News | Steve Jobs has passed away.
+  </title>
+  <link href="https://andybrewer.github.io/mvp/mvp.css" rel="stylesheet"></link>
+</head>
+
+<body>
+  <header>
+    <h1>{{data['title']}}</h1>
+    <div>
+      {{data['points']}} points | By {{data['author']}} | <a href="{{data['url']}}" target="_blank">{{data['url']}}</a>
+    </div>
+  </header>
+  <main>
+    {% for i in data['children']%}
+      <div>
+          <strong>{{i['author']}}:</strong>
+          <p type="html">{{i['text']|safe}}</p>        
+      </div>
+      <hr />
+    {% endfor %}    
+  </main>
+</body>
+
+</html>
