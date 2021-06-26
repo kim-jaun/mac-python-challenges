@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Job Search</title>
+    <link href="https://andybrewer.github.io/mvp/mvp.css" rel="stylesheet"></link>
+    <script src="https://kit.fontawesome.com/07062a174e.js" crossorigin="anonymous"></script>
+    <style>
+      .card {
+        margin:15px;
+        padding:0px 15px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="title">
+      <h1>Remote Jobs</h1>
+      <h3>{{resultsNumber}} {{searchingBy}} jobs found.</h3>
+      <div class="savezone">
+        <div><a href="/export?word={{searchingBy}}">Export to CSV</a></div>
+        <div><a href='/'><i class="fas fa-long-arrow-alt-left"> Go back</i></a></div>
+      </div>
+    </header>
+    <from>
+      {% for job in jobs%}
+      <div class="card">
+        <h2>{{job.title}}</h2>
+        <h3>{{job.company}}</h3>
+        <h3><a href="{{job.link}}" target="blank">Apply</a></h3>
+      </div>
+      {% endfor %}
+    </from>
+    </form>
+  </body>
+</html>
